@@ -14,7 +14,7 @@ import org.jsoup.select.Elements;
  */
 public class scrape {
     public static void main(String[] args) throws IOException {
-        String url = "https://sports.yahoo.com/soccer/premier-league/standings/?fr=sycsrp_catchall";
+        String url = "https://www.bbc.com/sport/football/premier-league/table";
         String fileName = "table.csv";
         FileWriter writer = new FileWriter(fileName);
         Document doc = Jsoup.connect(url).get();
