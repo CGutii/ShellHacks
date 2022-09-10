@@ -1,80 +1,56 @@
+//package com.github.davidepastore.stackoverflow34331254;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+/**
+ * Reply to stackoverflow 34331254 question.
+ *
+ */
 public class scrape {
-    private static final String EBAY_GLOBAL_DEALS_URL = "https://www.ebay.com/globaldeals";
-    
-    private static final String PRODUCT_CARD_CLASS = "dne-itemtile-detail";
-    private static final String PRODUCT_TITLE_CLASS = "dne-itemtile-title";
-    private static final String PRODUCT_LINK_SELECTOR = ".dne-itemtile-title a";
-    private static final String PRODUCT_PRICE_SELECTOR = ".dne-itemtile-price .first";
-    class Product {
-        private String name;
-        private String link;
-        private String formattedPrice;
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public String getLink() {
-            return link;
-        }
-        public void setLink(String link) {
-            this.link = link;
-        }
-        
-        public String getFormattedPrice() {
-            return formattedPrice;
-        }
-        public void setFormattedPrice(String formattedPrice) {
-            this.formattedPrice = formattedPrice;
-        }
-    }
-    
-    public List<Product> extractProducts() {
-        List<Product> products = new ArrayList<>();
-        
-        Document doc;
-        try {
-            doc = Jsoup.connect(EBAY_GLOBAL_DEALS_URL).get();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        
-        Elements productElements = doc.getElementsByClass(PRODUCT_CARD_CLASS);
-        for (Element productElement : productElements) {
-            Product product = new Product();
-            Elements titleElements = productElement.getElementsByClass(PRODUCT_TITLE_CLASS);
-            if (!titleElements.isEmpty()) {
-                product.setName(titleElements.get(0).attr("title"));
+    public static void main(String[] args) throws IOException {
+        String url = "https://sports.yahoo.com/soccer/premier-league/standings/?fr=sycsrp_catchall";
+        String fileName = "table.csv";
+        FileWriter writer = new FileWriter(fileName);
+        Document doc = Jsoup.connect(url).get();
+        System.out.println(doc);
+        Element tableElement = doc.select("table").first();
+
+        Elements tableHeaderEles = tableElement.select("thead tr th");
+        System.out.println("headers");
+        for (int i = 0; i < tableHeaderEles.size(); i++) {
+            System.out.println(tableHeaderEles.get(i).text());
+            writer.append(tableHeaderEles.get(i).text());
+
+            if(i != tableHeaderEles.size() -1){             
+                writer.append(',');
             }
-            Elements linkElements = productElement.select(PRODUCT_LINK_SELECTOR);
-            if (!linkElements.isEmpty()) {
-                product.setLink(linkElements.get(0).attr("href"));
-            }
-            Elements priceElements = productElement.select(PRODUCT_PRICE_SELECTOR);
-            if (!priceElements.isEmpty()) {
-                product.setFormattedPrice(priceElements.get(0).text());
-            }
-            products.add(product);
         }
-        
-        return products;
-    }
-    
-    public static void main(String[] args) {
-        scrape jsoupScrapper = new scrape();
-        List<Product> products = jsoupScrapper.extractProducts();
-        for (Product product : products) {
-            System.out.println(
-                    String.format("Product:\n%s\n%s\n%s\n\n", product.getName(), product.getFormattedPrice(), product.getLink())
-            );
+        writer.append('\n');
+        System.out.println();
+
+        Elements tableRowElements = tableElement.select(":not(thead) tr");
+
+        for (int i = 0; i < tableRowElements.size(); i++) {
+            Element row = tableRowElements.get(i);
+            System.out.println("row");
+            Elements rowItems = row.select("td");
+            for (int j = 0; j < rowItems.size(); j++) {
+                System.out.println(rowItems.get(j).text());
+                writer.append(rowItems.get(j).text());
+
+                if(j != rowItems.size() -1){
+                    writer.append(',');
+                }
+            }
+            writer.append('\n');
         }
+
+        writer.close();
     }
 }
