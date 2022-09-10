@@ -69,7 +69,7 @@ public class scrape {
     }
     
     public static void main(String[] args) {
-        App jsoupScrapper = new App();
+        scrape jsoupScrapper = new scrape();
         List<Product> products = jsoupScrapper.extractProducts();
         for (Product product : products) {
             System.out.println(
