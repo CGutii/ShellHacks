@@ -21,7 +21,7 @@ public class scrape {
         for (int i = 0; i < tableHeaderEles.size(); i++) {
             System.out.println(tableHeaderEles.get(i).text());
             writer.append(tableHeaderEles.get(i).text());
-
+                        
             if(i != tableHeaderEles.size() -1){             
                 writer.append(',');
             }
@@ -48,4 +48,6 @@ public class scrape {
 
         writer.close();
     }
+
+  
 }
