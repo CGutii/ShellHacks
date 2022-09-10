@@ -1,14 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <link rel="stylesheet" href="site.css">
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src=”app.js”></script>
+
 </head>
 <h1>Man City is the greatest team in Europe</h1>
     <body>
-        <form id="form" role="search">
-            <input type="search" id="query" name="q"
-             placeholder="Enter Team Abbreviation"
-                aria-label="Search through site content">
-                <button>Search</button>
-        </form>
+        <input id="userinput" placeholder = "Enter Team Name"> <br><br>
+        <button onclick="greetings()"> Submit </button> <br>
+
+        <script>
+            function greetings() {
+            var adj=document.getElementById("userinput").value;
+            document.write("Hello!!, "+adj);
+            }
+            </script>
     </body>
-</html>
+</html> 
