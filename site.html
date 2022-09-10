@@ -1,26 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <link rel="stylesheet" href="site.css">
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src=”app.js”></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- Third party plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <!-- Core theme JS-->
-    <!-- <script src="js/scripts.js"></script> -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <h1>Man City is the greatest team in Europe</h1>
     <body>
-        <form id=”form”>
-            <input class=”form-control” id=”user-input” placeholder= "Enter Team Name">
-            <button id=”button” class=”btn btn-secondary” type="button">Find Team!</button>
-        </form>
+        <input id="userinput" placeholder = "Enter Team Name"> <br><br>
+        <button onclick="greetings()"> Submit </button> <br>
 
+        <script>
+            function greetings() {
+            var adj=document.getElementById("userinput").value;
+            document.write("Hello!!, "+adj);
+            }
+            </script>
     </body>
 </html> 
