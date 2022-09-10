@@ -1,4 +1,3 @@
-//package com.github.davidepastore.stackoverflow34331254;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,10 +7,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-/**
- * Reply to stackoverflow 34331254 question.
- *
- */
 public class scrape {
     public static void main(String[] args) throws IOException {
         String url = "https://www.bbc.com/sport/football/premier-league/table";
