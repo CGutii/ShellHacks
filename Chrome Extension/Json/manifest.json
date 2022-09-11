@@ -4,12 +4,21 @@
 "version" : "1.0",
 "manifest_version":3,
 "background": {
-    "service_worker":"iconChoice.js"
+    "service_worker":"background.js"
 },
+ 
 
 "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+        "16": "",
+        "32": "",
+        "48": "",
+        "128 ": ""
+
+    }
 },
+
 
 "permissions": ["storage"]
 }
