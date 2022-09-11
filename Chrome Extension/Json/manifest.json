@@ -2,7 +2,7 @@
 "name": "FootballFan",
 "description": "choose from the most popular football teams in the world and get in depth stats of them",
 "version" : "1.0",
-"manifest_version":3,
+"manifest_version":2,
 "background": {
     "service_worker":"background.js"
 },
